@@ -1,0 +1,14 @@
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\bin\Debug\net8.0\DGD208-MuammerBeytekin.exe
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\bin\Debug\net8.0\DGD208-MuammerBeytekin.deps.json
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\bin\Debug\net8.0\DGD208-MuammerBeytekin.runtimeconfig.json
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\bin\Debug\net8.0\DGD208-MuammerBeytekin.dll
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\bin\Debug\net8.0\DGD208-MuammerBeytekin.pdb
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.AssemblyInfoInputs.cache
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.AssemblyInfo.cs
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.csproj.CoreCompileInputs.cache
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.dll
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\refint\DGD208-MuammerBeytekin.dll
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.pdb
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\DGD208-MuammerBeytekin.genruntimeconfig.cache
+C:\Users\Charlie\source\repos\DGD208-MuammerBeytekin\DGD208-MuammerBeytekin\obj\Debug\net8.0\ref\DGD208-MuammerBeytekin.dll

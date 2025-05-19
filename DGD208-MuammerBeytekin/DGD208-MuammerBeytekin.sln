@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGD208-MuammerBeytekin", "DGD208-MuammerBeytekin\DGD208-MuammerBeytekin.csproj", "{234523CE-7D91-4786-9636-0AC809825689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DGD208-MuammerBeytekin", "DGD208-MuammerBeytekin\DGD208-MuammerBeytekin.csproj", "{234523CE-7D91-4786-9636-0AC809825689}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Çözüm Öğeleri", "Çözüm Öğeleri", "{59E2CE1E-A94D-4DD4-ACC6-6A57C95711E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
