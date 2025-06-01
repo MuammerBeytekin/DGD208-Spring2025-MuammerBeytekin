@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +6,32 @@ using System.Threading.Tasks;
 
 namespace DGD208_MuammerBeytekin
 {
-    public class Game
+    public static class Game
     {
-        private bool isRunning = true;
+        private static List<Pet> pets = new List<Pet>();
+        private static List<Item> items = ItemDatabase.GetAllItems();
+        private static string playerName = "Muammer Beytekin";
+        private static string studentId = "2305041024";
 
-        // Aletlerin listesi
-        private readonly List<Pet> garage = new();
-
-        // Loop
-        public void Start()
+        public static void Start()
         {
-            while (isRunning)
-            {
-                Menu.ShowMainMenu();
-                Console.Write("\n=> Your choice: ");
-                string choice = Console.ReadLine();
+            bool playing = true;
 
-                switch (choice)
+            while (playing)
+            {
+                Console.Clear();
+                Console.WriteLine("=== GARAGE BUDDY ===");
+                Console.WriteLine("1. Adopt a new ride");
+                Console.WriteLine("2. View my rides");
+                Console.WriteLine("3. Use an item");
+                Console.WriteLine("4. Show creator info");
+                Console.WriteLine("5. Exit");
+                Console.Write("Pick something: ");
+
+                switch (Console.ReadLine())
                 {
                     case "1":
-                        AdoptMotorcycle();
+                        AdoptPet();
                         break;
                     case "2":
                         ShowStats();
@@ -34,105 +40,106 @@ namespace DGD208_MuammerBeytekin
                         UseItem();
                         break;
                     case "4":
-                        ShowCreatorInfo();
+                        Console.WriteLine($"Made by (Muammer Beytekin) - {2305041024}");
+                        Console.ReadKey();
                         break;
                     case "5":
-                        ExitGame();
-                        break;
-                    default:
-                        Console.WriteLine("That option doesn’t exist. Try again.");
+                        playing = false;
                         break;
                 }
-
-                Console.WriteLine("\nPress Enter to continue...");
-                Console.ReadLine();
-                Console.Clear();
             }
         }
 
-        // Menü seçimleri
-        private void AdoptMotorcycle()
+        private static void AdoptPet()
         {
+            Console.Clear();
             Console.Write("Name your new ride: ");
-            string name = Console.ReadLine()?.Trim();
-            if (string.IsNullOrWhiteSpace(name))
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Pick a style:");
+            Array types = Enum.GetValues(typeof(PetType));
+            for (int i = 0; i < types.Length; i++)
             {
-                Console.WriteLine("Name cannot be empty.");
-                return;
+                Console.WriteLine($"{i + 1} - {types.GetValue(i)}");
             }
 
-            Pet moto = new Pet(name, PetType.Motorcycle);
-            garage.Add(moto);
-            Console.WriteLine($"{name} is now in your garage with all stats at 50.");
+            if (int.TryParse(Console.ReadLine(), out int petTypeIndex) && petTypeIndex > 0 && petTypeIndex <= types.Length)
+            {
+                Pet newPet = new Pet(name, (PetType)types.GetValue(petTypeIndex - 1));
+                pets.Add(newPet);
+                Console.WriteLine($"{name} is ready to roll!");
+            }
+            else
+            {
+                Console.WriteLine("Not a valid option.");
+            }
+
+            Console.ReadKey();
         }
 
-        private void ShowStats()
+        private static void ShowStats()
         {
-            if (garage.Count == 0)
+            Console.Clear();
+            if (pets.Count == 0)
             {
-                Console.WriteLine("Your garage is empty. Adopt a motorcycle first.");
-                return;
+                Console.WriteLine("You got no rides!");
             }
-
-            Console.WriteLine("\nNAME                FUEL  IGN  RIDE");
-            Console.WriteLine("---------------------------------------");
-            foreach (var m in garage)
-                Console.WriteLine($"{m.Name,-18} {m.Fuel,4}  {m.Ignition,4}  {m.RideQuality,4}");
+            else
+            {
+                foreach (var pet in pets)
+                {
+                    Console.WriteLine($"{pet.Name} [{pet.Type}] - Fuel: {pet.Hunger}, Engine Rest: {pet.Sleep}, Thrill: {pet.Fun}");
+                }
+            }
+            Console.ReadKey();
         }
 
-        private void UseItem()
+        private static async void UseItem()
         {
-            if (garage.Count == 0)
+            Console.Clear();
+            if (pets.Count == 0)
             {
-                Console.WriteLine("No motorcycles available.");
+                Console.WriteLine("You have no rides to upgrade!");
+                Console.ReadKey();
                 return;
             }
 
-            // Sahiplenme
-            Console.WriteLine("Select a motorcycle:");
-            for (int i = 0; i < garage.Count; i++)
-                Console.WriteLine($"{i + 1}. {garage[i].Name}");
-            Console.Write("=> ");
-            if (!int.TryParse(Console.ReadLine(), out int motoIndex) ||
-                motoIndex < 1 || motoIndex > garage.Count)
+            Console.WriteLine("Pick a ride:");
+            for (int i = 0; i < pets.Count; i++)
             {
-                Console.WriteLine("Invalid selection.");
+                Console.WriteLine($"{i} - {pets[i].Name} [{pets[i].Type}]");
+            }
+
+            if (!int.TryParse(Console.ReadLine(), out int petIndex) || petIndex < 0 || petIndex >= pets.Count)
+            {
+                Console.WriteLine("Invalid ride!");
+                Console.ReadKey();
                 return;
             }
 
-            Pet selected = garage[motoIndex - 1];
+            Pet chosenPet = pets[petIndex];
 
-            // Item list
-            Console.WriteLine("Available items:");
-            for (int i = 0; i < ItemDatabase.Items.Count; i++)
+            Console.WriteLine("Pick an item to use:");
+            for (int i = 0; i < items.Count; i++)
             {
-                var it = ItemDatabase.Items[i];
-                Console.WriteLine($"{i + 1}. {it.Name} (+{it.Amount} {it.AffectedStat}) ≈{it.Seconds}s");
+                Console.WriteLine($"{i} - {items[i].Name} (+{items[i].Value} to {items[i].Type})");
             }
-            Console.Write("=> ");
-            if (!int.TryParse(Console.ReadLine(), out int itemIndex) ||
-                itemIndex < 1 || itemIndex > ItemDatabase.Items.Count)
+
+            if (!int.TryParse(Console.ReadLine(), out int itemIndex) || itemIndex < 0 || itemIndex >= items.Count)
             {
-                Console.WriteLine("Invalid item number.");
+                Console.WriteLine("Invalid item!");
+                Console.ReadKey();
                 return;
             }
 
-            var item = ItemDatabase.Items[itemIndex - 1];
-            Console.WriteLine($"{item.Name} is being applied...");
-            item.ApplyTo(selected).GetAwaiter().GetResult(); 
+            await items[itemIndex].Use(chosenPet);
+            Console.ReadKey();
         }
 
-        private void ShowCreatorInfo()
+        public static void RemovePet(Pet pet)
         {
-            Console.WriteLine("Project Creator");
-            Console.WriteLine("Student Name : Muammer Beytekin");
-            Console.WriteLine("Student No   : 2305041024");
-        }
-
-        private void ExitGame()
-        {
-            Console.WriteLine("Shutting down. See you next time.");
-            isRunning = false;
+            pets.Remove(pet);
         }
     }
 }
+
